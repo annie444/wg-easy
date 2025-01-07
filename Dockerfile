@@ -1,5 +1,5 @@
 # nodejs 20 hangs on build with armv6/armv7 (https://github.com/nodejs/docker-node/issues/2077)
-FROM docker.io/library/node:18-alpine AS build
+FROM docker.io/library/node:22.12-alpine AS build
 WORKDIR /app
 
 # Install pnpm
@@ -17,7 +17,7 @@ RUN pnpm build
 
 # Copy build result to a new image.
 # This saves a lot of disk space.
-FROM docker.io/library/node:lts-alpine
+FROM docker.io/library/node:22.12-alpine
 WORKDIR /app
 
 HEALTHCHECK CMD /usr/bin/timeout 5s /bin/sh -c "/usr/bin/wg show | /bin/grep -q interface || exit 1" --interval=1m --timeout=5s --retries=3
