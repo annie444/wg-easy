@@ -2,6 +2,7 @@
   "name": "Nombre",
   "password": "Contraseña",
   "signIn": "Iniciar sesión",
+  "signInWith": "Iniciar sesión con",
   "logout": "Cerrar sesión",
   "updateAvailable": "¡Hay una actualización disponible!",
   "update": "Actualizar",

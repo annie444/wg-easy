@@ -2,6 +2,7 @@
   "name": "Nome",
   "password": "Password",
   "signIn": "Accedi",
+  "signInWith": "Accedi con",
   "logout": "Esci",
   "updateAvailable": "È disponibile un aggiornamento!",
   "update": "Aggiorna",

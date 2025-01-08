@@ -20,6 +20,13 @@ class API {
     });
   }
 
+  async createOidcSession({ provider }: { provider: string }) {
+    return $fetch('/api/oidc', {
+      method: 'post',
+      body: { provider },
+    });
+  }
+
   async deleteSession() {
     return $fetch('/api/session', {
       method: 'delete',

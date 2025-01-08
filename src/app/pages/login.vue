@@ -73,6 +73,14 @@
         ]"
         :value="$t('signIn')"
       />
+      <button
+        v-if="oidc"
+        :data-provider="provider"
+        class="mt-4 w-full cursor-pointer rounded bg-red-800 py-2 text-sm text-white shadow transition hover:bg-red-700 dark:bg-red-800 dark:text-white dark:hover:bg-red-700"
+        @click="oidcLogin"
+      >
+        {{ $t('signInWith') }} {{ provider }}
+      </button>
     </form>
 
     <BaseToast ref="toast" />
@@ -90,6 +98,8 @@ const username = ref<null | string>(null);
 const password = ref<null | string>(null);
 const authStore = useAuthStore();
 const toast = useTemplateRef('toast');
+const provider = await useRuntimeConfig().public.oidcProvider;
+const oidc = ref(provider ? true : false);
 
 async function login(e: Event) {
   e.preventDefault();
@@ -116,5 +126,29 @@ async function login(e: Event) {
   }
   authenticating.value = false;
   password.value = null;
+}
+
+async function oidcLogin(e: Event) {
+  e.preventDefault();
+  const provider = (e.target as HTMLButtonElement).dataset.provider;
+  console.log(provider);
+
+  if (!provider || authenticating.value) return;
+
+  authenticating.value = true;
+  try {
+    const res = await authStore.oidcLogin(provider);
+    if (res) {
+      await navigateTo('/');
+    }
+  } catch (error) {
+    if (error instanceof FetchError) {
+      toast.value?.publish({
+        title: t('error.login'),
+        message: error.data.message,
+      });
+    }
+  }
+  authenticating.value = false;
 }
 </script>

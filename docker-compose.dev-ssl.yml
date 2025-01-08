@@ -1,0 +1,38 @@
+services:
+  wg-easy:
+    build:
+      dockerfile: ./Dockerfile.dev
+    command: pnpm run dev --https --ssl-cert localhost.pem --ssl-key localhost-key.pem
+    environment:
+      OIDC_PROVIDER: mock
+    develop:
+      watch:
+        - action: sync
+          path: ./src
+          target: /app/
+          ignore:
+            - ./src/node_modules/
+        - action: rebuild
+          path: ./src/package.json
+    volumes:
+      - temp:/app/.nuxt/
+      - temp1:/app/node_modules/
+      - /lib/modules:/lib/modules:ro
+      - ./data/:/etc/wireguard
+      - ./localhost.pem:/app/localhost.pem:ro
+      - ./localhost-key.pem:/app/localhost-key.pem:ro
+    ports:
+      - "51820:51820/udp"
+      - "51821:51821/tcp"
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+      - NET_RAW
+    pull_policy: build
+
+# folders should be generated inside container
+volumes:
+  temp:
+    driver: local
+  temp1:
+    driver: local

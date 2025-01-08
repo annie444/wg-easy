@@ -76,6 +76,7 @@
   "username": "Username",
   "password": "Password",
   "signIn": "Sign In",
+  "signInWith": "Sign in with",
   "logout": "Logout",
   "updateAvailable": "There is an update available!",
   "update": "Update",

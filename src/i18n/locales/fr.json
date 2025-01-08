@@ -76,6 +76,7 @@
   "username": "Nom d'utilisateur",
   "password": "Mot de passe",
   "signIn": "Se Connecter",
+  "signInWith": "Se connecter avec",
   "logout": "Se déconnecter",
   "updateAvailable": "Une mise à jour est disponible !",
   "update": "Mise à jour",

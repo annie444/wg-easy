@@ -8,13 +8,14 @@ services:
       - temp:/app/.nuxt/
       - temp1:/app/node_modules/
       - /lib/modules:/lib/modules:ro
-      # - ./data/:/etc/wireguard
+      - ./data/:/etc/wireguard
     ports:
       - "51820:51820/udp"
       - "51821:51821/tcp"
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
+      - NET_RAW
 
 # folders should be generated inside container
 volumes:

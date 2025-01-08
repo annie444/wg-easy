@@ -2,6 +2,7 @@
   "name": "Name",
   "password": "Passwort",
   "signIn": "Anmelden",
+  "signInWith": "Anmelden mit",
   "logout": "Abmelden",
   "updateAvailable": "Eine Aktualisierung steht zur Verfügung!",
   "update": "Aktualisieren",

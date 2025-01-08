@@ -17,6 +17,14 @@ export const useAuthStore = defineStore('Auth', () => {
   /**
    * @throws if unsuccessful
    */
+  async function oidcLogin(provider: string) {
+    await api.createOidcSession({ provider });
+    return true as const;
+  }
+
+  /**
+   * @throws if unsuccessful
+   */
   async function logout() {
     const response = await api.deleteSession();
     return response.success;
@@ -28,5 +36,5 @@ export const useAuthStore = defineStore('Auth', () => {
     userData.value = response.value;
   }
 
-  return { userData, login, logout, update };
+  return { userData, login, logout, update, oidcLogin };
 });
