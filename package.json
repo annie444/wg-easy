@@ -6,5 +6,5 @@
     "dev:ssl": "docker compose -f docker-compose.dev-ssl.yml up --watch",
     "build": "docker build -t wg-easy ."
   },
-  "packageManager": "pnpm@9.15.0"
+  "packageManager": "pnpm@10.0.0"
 }
